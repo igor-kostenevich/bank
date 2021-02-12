@@ -1,6 +1,5 @@
 <template>
   <component :is="layout + '-layout'" v-if="layout"></component>
-  <router-view />
 </template>
 
 <script>
