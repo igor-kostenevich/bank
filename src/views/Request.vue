@@ -2,9 +2,9 @@
 <app-loader v-if='loading'></app-loader>
   <app-page back title="Заявка" v-else-if="request">
     <p><strong>Имя владельца</strong>: {{request.fio}}</p>
-    <p><strong>Имя владельца</strong>: {{request.phone}}</p>
-    <p><strong>Имя владельца</strong>: {{currency(request.amount)}}</p>
-    <p><strong>Имя владельца</strong>: <app-status :type="request.status"></app-status></p>
+    <p><strong>Телефон владельца</strong>: {{request.phone}}</p>
+    <p><strong>Сумма</strong>: {{currency(request.amount)}}</p>
+    <p><strong>Статус</strong>: <app-status :type="request.status"></app-status></p>
 
     <div class="form-control">
       <label for="status">Статус</label>
