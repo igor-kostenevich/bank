@@ -1,8 +1,12 @@
 <template>
-  <div class="question" @click="isOpen = !isOpen">
-    <div class="question-title">{{ question.title }}</div>
-    <div class="question-body" v-if="isOpen"> {{ question.text }} </div>
-  </div>
+  <!-- <transition> -->
+    <div class="question" @click="isOpen = !isOpen">
+      <div :class="['question-title', {'open': isOpen}]">
+        {{ question.title }}
+      </div>
+      <p class="question-body" v-if="isOpen">{{ question.text }}</p>
+    </div>
+  <!-- </transition> -->
 </template>
 
 <script>

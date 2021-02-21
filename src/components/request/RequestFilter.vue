@@ -1,11 +1,11 @@
 <template>
   <div class="filter">
     <div class="form-control">
-      <input type="text" placeholder="Поиск по имени" v-model="name">
+      <input type="text" placeholder="Поиск по имени" v-model="name" />
     </div>
     <div class="form-control">
-      <select name="" id="" v-model="status">
-        <option disabled selected>Поиск по статусу</option>
+      <select v-model="status" class="filter-select">
+        <option disabled hidden value="">Поиск по статусу</option>
         <option value="done">Завершен</option>
         <option value="cancelled">Отменен</option>
         <option value="active">Активен</option>
@@ -25,10 +25,17 @@ export default {
 
   setup (_, { emit }) {
     const name = ref('')
-    const status = ref()
-    const isActive = computed(() => name.value || status.value)
+    const status = ref('')
 
-    watch([name, status], values => {
+    const isActive = computed(() => {
+      if (name.value || status.value !== 'default') {
+        return name.value || status.value
+      } else {
+        return null
+      }
+    })
+
+    watch([name, status], (values) => {
       emit('update:modelValue', {
         name: values[0],
         status: values[1]
@@ -41,7 +48,7 @@ export default {
       isActive,
       reset: () => {
         name.value = ''
-        status.value = null
+        status.value = ''
       }
     }
   }
@@ -49,5 +56,7 @@ export default {
 </script>
 
 <style>
-
+.filter-select option:first-child {
+  color: red;
+}
 </style>

@@ -8,10 +8,14 @@ export function useRequestForm (fn) {
     }
   })
 
+  const fioRegExp = /^[a-zA-Zа-яА-Я ]+$/
+  const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{2}\)?)?$/
+
   const { value: fio, errorMessage: fError, handleBlur: fBlur } = useField(
     'fio',
     yup
       .string()
+      .matches(fioRegExp, 'ФИО не может содержать цифр и знаков')
       .trim()
       .required('Пожалуйста, введите Ваше ФИО')
   )
@@ -19,13 +23,19 @@ export function useRequestForm (fn) {
     'phone',
     yup
       .string()
+      .matches(phoneRegExp, 'Неверный формат номера телефона. Пожалуйста, введите формата +380YYXXXXXXX')
+      .min(13, 'Неверный формат номера телефона. Пожалуйста, введите формата +380YYXXXXXXX')
+      .max(13, 'Номер телефона не может содержать больше 13 символов')
       .trim()
       .required('Телефон не может быть пустым')
   )
   const { value: amount, errorMessage: aError, handleBlur: aBlur } = useField(
     'amount',
-    yup.number()
-      .min(0, 'Сумма не может быть меньше 0')
+    yup
+      .number()
+      .typeError('Введите сумму')
+      .min(1, 'Сумма не может быть меньше 0')
+      .max(10000000, 'Сумма не может быть больше 10 000 000')
       .required('Введите сумму')
   )
   const { value: status } = useField('status')

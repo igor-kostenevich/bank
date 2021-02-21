@@ -9,8 +9,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  color: #2c3e50;
-  background: #2c3e50;
+  /* color: #2c3e50;
+  background: #2c3e50; */
+  background-color: #eeeeee;
 }
 
 hr {
@@ -124,6 +125,9 @@ h3 {
 .container {
   margin: 0 auto;
   max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .container.with-nav {
@@ -148,6 +152,17 @@ h3 {
 }
 
 .form-control input,
+.form-control textarea {
+  transition: all .2s ease;
+}
+
+.form-control input:hover,
+.form-control textarea:hover {
+  box-shadow: 0px 4px 8px rgba(21, 21, 34, 0.06);
+  transition: all .2s ease;
+}
+
+.form-control input,
 .form-control select,
 .form-control textarea {
   font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
@@ -161,6 +176,10 @@ h3 {
   border-radius: 3px;
   font-size: 1rem;
   resize: none;
+}
+
+.form-control select {
+  cursor: pointer;
 }
 
 .form-control small {
@@ -204,6 +223,11 @@ h3 {
   border-radius: 10px;
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
   background: #fff;
+  width: 100%;
+}
+
+.card-help {
+  width: 300px;
 }
 
 .card.marked {
@@ -245,6 +269,7 @@ h3 {
   position: relative;
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
+  width: 100%;
 }
 
 .alert.primary {
@@ -293,6 +318,14 @@ h3 {
   border-radius: 10px;
   transform: translateX(-50%);
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 1.6rem;
+  cursor: pointer;
 }
 
 .modal-backdrop {
@@ -344,7 +377,7 @@ h3 {
 .loader:before {
   width: 50%;
   height: 50%;
-  background: #ffffff;
+  background: #fff;
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
@@ -352,7 +385,7 @@ h3 {
   content: '';
 }
 .loader:after {
-  background: #2c3e50;
+  /* background: #fff; */
   width: 75%;
   height: 75%;
   border-radius: 50%;
@@ -452,6 +485,15 @@ h3 {
   color: #fff;
 }
 
+.text-black {
+  color: #000;
+}
+
+.text-black:hover {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
 .text-danger {
   color: #e53935;
 }
@@ -503,9 +545,11 @@ h3 {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #ccc;
+  background: #FBFBFB;
+  box-shadow: -3px 4px 6px rgba(140, 140, 140, 0.20);
   z-index: 100;
-  padding: 0.5rem;
+  padding: 1rem;
+  transition: all .25s ease;
 }
 
 .sidebar-close {
@@ -522,15 +566,63 @@ h3 {
 
 .question {
   padding: 1rem;
-  margin-bottom: 1rem;
   border-radius: 4px;
+  border-bottom: 2px solid #EEEEEE;
+  /* transition: all .3s ease; */
 }
 
 .question:hover {
   cursor: pointer;
-  background: #eee;
 }
 
 .question-title {
+  position: relative;
   font-weight: bold;
+  font-size: 18px;
+  padding-right: 20px;
+}
+
+.question-title:after {
+  content: '+';
+  font-size: 22px;
+  position: absolute;
+  top: -3px;
+  right: 0;
+  font-weight: 300;
+  transition: all .3s ease;
+}
+
+.question-title.open:after {
+  transform: rotate(45deg);
+}
+
+.question-body {
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  animation: sweep .4s linear;
+  padding-right: 30px;
+}
+
+@keyframes sweep {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]:hover,
+input[type="number"]:focus {
+  -moz-appearance: number-input;
+}
+
+.link_github:hover {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
 }

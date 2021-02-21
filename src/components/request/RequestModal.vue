@@ -2,12 +2,12 @@
   <form action="" @submit.prevent="onSubmit">
     <div class="form-control" :class="{invalid: fError}">
       <label for="fio">ФИО</label>
-      <input type="text" id="fio" v-model="fio" @blur="fBlur">
+      <input type="text" id="fio" v-model.lazy="fio" @blur="fBlur">
       <small v-if="fError">{{ fError }}</small>
     </div>
     <div class="form-control" :class="{invalid: pError}">
       <label for="phone">Телефон</label>
-      <input type="text" id="phone" v-model="phone" @blur="pBlur">
+      <input type="text" id="phone" v-model.lazy="phone" @blur="pBlur">
       <small v-if="pError">{{ pError }}</small>
     </div>
     <div class="form-control" :class="{invalid: aError}">

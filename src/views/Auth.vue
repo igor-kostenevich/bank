@@ -17,6 +17,11 @@
     <button class="btn primary" type="submit" :disabled="isSubmitting || isTooManyAttempts">Войти</button>
     <div class="text-danger" v-if="isTooManyAttempts">Вы слишком часто пытаетесь войти в систему, попробуйте позже</div>
   </form>
+
+  <div class="card card-help">
+    <div>Email: admin@gmail.com</div>
+    <div>Пароль: 123456</div>
+  </div>
 </template>
 
 <script>
